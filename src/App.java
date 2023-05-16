@@ -27,39 +27,84 @@ public class App {
             userName = sc.nextLine();
             System.out.print("PASSWORD - ");
             password = sc.nextLine();
-            System.out.println("1.MY CAMERA \n2.RENT A CAMERA \n3.VIEW ALL CAMERAS \n4.MY WALLET \n5.EXIT");
-            int choice = sc.nextInt();
 
-            switch (choice) {
-                case 1:
-                    System.out.println("1.ADD \n2.REMOVE \n3.VIEW MY CAMERAS \n4.GO TO PREVIOUS MENU ");
-                    int myCameraChoice = sc.nextInt();
-                    sc.nextLine();
-                    switch (myCameraChoice) {
-                        case 1:
-                            Camera newCamera = new Camera();
-                            System.out.print("ENTER THE CAMERA BRAND - ");
-                            newCamera.setBrand(sc.nextLine());
+            boolean showMenu = true;
+            while (showMenu) {
 
-                            System.out.print("ENTER THE MODEL - ");
-                            newCamera.setModel(sc.nextLine());
-                            System.out.print("ENTER THE PER DAY PRICE (INR) - ");
-                            newCamera.setPrice(sc.nextDouble());
-                            cameras.add(newCamera);
-                            System.out.print("YOUR CAMERA HAS BEEN SUCCESSFULY ADDED TO THE LIST");
+                System.out.println("1.MY CAMERA \n2.RENT A CAMERA \n3.VIEW ALL CAMERAS \n4.MY WALLET \n5.EXIT");
+                int choice = sc.nextInt();
 
-                            break;
+                switch (choice) {
 
-                        default:
-                            break;
-                    }
+                    case 1:
+                        boolean choice1 = true;
+                        while (choice1) {
 
-                    break;
+                            System.out.println("1.ADD \n2.REMOVE \n3.VIEW MY CAMERAS \n4.GO TO PREVIOUS MENU ");
+                            int myCameraChoice = sc.nextInt();
+                            sc.nextLine();
+                            switch (myCameraChoice) {
+                                case 1:
+                                    Camera newCamera = new Camera();
+                                    System.out.print("ENTER THE CAMERA BRAND - ");
+                                    newCamera.setBrand(sc.nextLine());
 
-                default:
-                    break;
+                                    System.out.print("ENTER THE MODEL - ");
+                                    newCamera.setModel(sc.nextLine());
+                                    System.out.print("ENTER THE PER DAY PRICE (INR) - ");
+                                    newCamera.setPrice(sc.nextDouble());
+                                    cameras.add(newCamera);
+                                    System.out.print("YOUR CAMERA HAS BEEN SUCCESSFULY ADDED TO THE LIST");
+
+                                    break;
+                                case 2:
+                                    Camera.displayCameras(cameras);
+                                    System.out.print("ENTER THE CAMERA ID TO REMOVE - ");
+                                    int cameraId = sc.nextInt();
+                                    cameras = Camera.deleteCamera(cameras, cameraId);
+                                    System.out.println("CAMERA SUCCESSFULLY REMOVED FROM THE LIST.");
+                                    break;
+
+                                case 3:
+                                    Camera.displayCameras(cameras);
+                                    break;
+
+                                case 4:
+                                    choice1 = false;
+                                    break;
+
+                                default:
+                                    break;
+                            }
+                        }
+
+                        break;
+
+                    case 2:
+                        System.out.println("FOLLOWING IS THE LIST OF AVAILABLE CAMERA(S) - ");
+                        Camera.displayCameras(Camera.getAvailablCameras(cameras));
+                        System.out.print("ENTER THE CAMERA ID YOU WANT TO RENT - ");
+                        int cameraId = sc.nextInt();
+                        cameras = Camera.updateStatus(cameras, cameraId);
+                        Camera rentedCamera = Camera.getCameraDetail(cameras, cameraId);
+                        System.out
+                                .println("YOUR TRANSACTION - " + rentedCamera.getBrand() + " " + rentedCamera.getModel()
+                                        + " with rent INR." + rentedCamera.getPrice() + " HAS SUCCESSFULLY COMPLETED.");
+
+                        break;
+                    case 3:
+                        break;
+                    case 4:
+                        break;
+                    case 5:
+                        showMenu = false;
+                        break;
+
+                    default:
+                        break;
+                }
+
             }
-
         } catch (Exception e) {
             System.out.println(e.getMessage());
         } finally {
