@@ -1,3 +1,5 @@
+//  Version 1.0.0
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -85,16 +87,28 @@ public class App {
                         Camera.displayCameras(Camera.getAvailablCameras(cameras));
                         System.out.print("ENTER THE CAMERA ID YOU WANT TO RENT - ");
                         int cameraId = sc.nextInt();
-                        cameras = Camera.updateStatus(cameras, cameraId);
-                        Camera rentedCamera = Camera.getCameraDetail(cameras, cameraId);
-                        System.out
-                                .println("YOUR TRANSACTION - " + rentedCamera.getBrand() + " " + rentedCamera.getModel()
-                                        + " with rent INR." + rentedCamera.getPrice() + " HAS SUCCESSFULLY COMPLETED.");
 
+                        Camera rentedCamera = Camera.getCameraDetail(cameras, cameraId);
+                        double newBalance = wallet.getBalance() - rentedCamera.getPrice();
+                        if (newBalance >= 0) {
+
+                            cameras = Camera.updateStatus(cameras, cameraId);
+                            System.out
+                                    .println("YOUR TRANSACTION - " + rentedCamera.getBrand() + " "
+                                            + rentedCamera.getModel()
+                                            + " with rent INR." + rentedCamera.getPrice()
+                                            + " HAS SUCCESSFULLY COMPLETED.");
+
+                        } else {
+                            System.out.println(
+                                    "ERROR : TRANSACTION FAILED DUE TO INSUFFICIENT WALLET BALANCE. PLEASE DEPOSIT THE AMOUNT TO YOUR WALLET");
+                        }
                         break;
                     case 3:
+
                         break;
                     case 4:
+
                         break;
                     case 5:
                         showMenu = false;
