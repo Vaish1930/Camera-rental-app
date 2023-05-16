@@ -1,4 +1,4 @@
-//  Version 1.0.0
+//  Version 2.0.0
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -105,8 +105,9 @@ public class App {
                         }
                         break;
                     case 3:
-
+                        Camera.displayCameras(cameras);
                         break;
+
                     case 4:
 
                         break;
