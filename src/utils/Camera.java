@@ -118,12 +118,14 @@ public class Camera {
     }
 
     public static void displayCameras(ArrayList<Camera> cameras) {
+
         System.out.println(
                 "==================================================================================================");
         System.out.println(
                 "CAMERAID          BRAND          MODEL          PRICE(PER DAY)         STATUS     ");
         System.out.println(
                 "==================================================================================================");
+
         cameras.stream().forEach(cameraItem -> {
             System.out.println(cameraItem.getCameraId() + "\t\t" + Camera.getColumn(cameraItem.getBrand())
                     + Camera.getColumn(cameraItem.getModel()) + Camera.getColumn(cameraItem.getPrice())
