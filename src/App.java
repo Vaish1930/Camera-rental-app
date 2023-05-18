@@ -1,4 +1,4 @@
-//  Version 2.0.0
+//  Version 3.0.0
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -109,7 +109,16 @@ public class App {
                         break;
 
                     case 4:
-
+                        System.out.println("YOUR WALLET BALANCE - INR." + wallet.getBalance());
+                        System.out.println("DO YOU WANT TO DEPOSIT MORE AMOUNT TO YOU WALLET?(1.YES 2.NO) - ");
+                        int yourAnswer = sc.nextInt();
+                        if (yourAnswer == 1) {
+                            System.out.println("ENTER THE AMOUNT (INR)");
+                            double amount = sc.nextDouble();
+                            wallet.setBalance(wallet.getBalance() + amount);
+                            System.out.println("YOUR WALLET BALANCE UPDATED SUCCESSFULLY. CURRENT WALLET BALANCE - INR."
+                                    + wallet.getBalance());
+                        }
                         break;
                     case 5:
                         showMenu = false;
