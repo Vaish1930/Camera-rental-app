@@ -35,7 +35,7 @@ public class App {
 
                 while (showMenu) {
 
-                    System.out.println("1.MY CAMERA \n2.RENT A CAMERA \n3.VIEW ALL CAMERAS \n4.MY WALLET \n5.EXIT");
+                    System.out.println("\n1.MY CAMERA \n2.RENT A CAMERA \n3.VIEW ALL CAMERAS \n4.MY WALLET \n5.EXIT");
                     int choice = sc.nextInt();
 
                     switch (choice) {
@@ -58,7 +58,7 @@ public class App {
                                         System.out.print("ENTER THE PER DAY PRICE (INR) - ");
                                         newCamera.setPrice(sc.nextDouble());
                                         cameras.add(newCamera);
-                                        System.out.print("YOUR CAMERA HAS BEEN SUCCESSFULY ADDED TO THE LIST");
+                                        System.out.print("YOUR CAMERA HAS BEEN SUCCESSFULY ADDED TO THE LIST\n");
                                         cameras.sort((a, b) -> a.getCameraId() - b.getCameraId());
                                         break;
                                     case 2:
@@ -146,6 +146,7 @@ public class App {
                             break;
                         case 5:
                             showMenu = false;
+                            System.out.println("THANKS FOR USING CAMERA-RENTAL-APPLICATION");
                             break;
 
                         default:

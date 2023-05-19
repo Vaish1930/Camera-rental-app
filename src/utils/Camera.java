@@ -94,6 +94,16 @@ public class Camera {
         return numberText;
     }
 
+    public static String getColumn(int text) {
+
+        String numberText = Integer.toString(text);
+        int spaces = 16 - numberText.length();
+        for (int i = 0; i < spaces; i++) {
+            numberText += " ";
+        }
+        return numberText;
+    }
+
     public static ArrayList<Camera> deleteCamera(ArrayList<Camera> cameras, int id) {
         return (ArrayList<Camera>) cameras.stream().filter(cameraItem -> cameraItem.getCameraId() != id)
                 .collect(Collectors.toList());
@@ -122,14 +132,15 @@ public class Camera {
         System.out.println(
                 "==================================================================================================");
         System.out.println(
-                "CAMERAID          BRAND          MODEL          PRICE(PER DAY)         STATUS     ");
+                "CAMERAID        BRAND          MODEL          PRICE(PER DAY)      STATUS     ");
         System.out.println(
                 "==================================================================================================");
 
         cameras.stream().forEach(cameraItem -> {
-            System.out.println(cameraItem.getCameraId() + "\t\t" + Camera.getColumn(cameraItem.getBrand())
-                    + Camera.getColumn(cameraItem.getModel()) + Camera.getColumn(cameraItem.getPrice())
-                    + cameraItem.getStatus());
+            System.out.println(
+                    Camera.getColumn(cameraItem.getCameraId()) + Camera.getColumn(cameraItem.getBrand())
+                            + Camera.getColumn(cameraItem.getModel()) + Camera.getColumn(cameraItem.getPrice())
+                            + cameraItem.getStatus());
         });
 
     }
